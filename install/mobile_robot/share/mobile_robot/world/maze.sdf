@@ -1,0 +1,344 @@
+<?xml version="1.0" ?>
+<sdf version="1.8">
+  <world name="maze_world">
+
+    <!-- ==================== CONFIGURACIÓN BÁSICA ==================== -->
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <plugin filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-user-commands-system"
+      name="gz::sim::systems::UserCommands"/>
+
+    <!-- Luz solar -->
+    <light name="sun" type="directional">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <!-- Suelo -->
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry><plane><normal>0 0 1</normal><size>50 50</size></plane></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><plane><normal>0 0 1</normal><size>50 50</size></plane></geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ==================== MACRO DE PARED ==================== -->
+    <!-- Cada pared es una caja estática                         -->
+    <!-- Formato pose: X Y Z Roll Pitch Yaw                      -->
+    <!-- Altura de paredes: 1.0m  Grosor: 0.2m                  -->
+    <!-- Pasillos de 1.5m de ancho (robot 1.0m + margen 0.5m)  -->
+
+    <!-- ==================== BORDE EXTERIOR ==================== -->
+
+    <!-- Pared Norte (arriba) -->
+    <model name="wall_north">
+      <static>true</static>
+      <pose>0 9 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>18.4 0.2 1.0</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>18.4 0.2 1.0</size></box></geometry>
+          <material><ambient>0.3 0.3 0.8 1</ambient><diffuse>0.3 0.3 0.8 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Pared Sur (abajo) -->
+    <model name="wall_south">
+      <static>true</static>
+      <pose>0 -9 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>18.4 0.2 1.0</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>18.4 0.2 1.0</size></box></geometry>
+          <material><ambient>0.3 0.3 0.8 1</ambient><diffuse>0.3 0.3 0.8 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Pared Oeste (izquierda) -->
+    <model name="wall_west">
+      <static>true</static>
+      <pose>-9 0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.2 18.4 1.0</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 18.4 1.0</size></box></geometry>
+          <material><ambient>0.3 0.3 0.8 1</ambient><diffuse>0.3 0.3 0.8 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Pared Este (derecha) — con hueco de salida en Y=0 -->
+    <model name="wall_east_north">
+      <static>true</static>
+      <pose>9 4.85 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.2 8.5 1.0</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 8.5 1.0</size></box></geometry>
+          <material><ambient>0.3 0.3 0.8 1</ambient><diffuse>0.3 0.3 0.8 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_east_south">
+      <static>true</static>
+      <pose>9 -4.85 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.2 8.5 1.0</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 8.5 1.0</size></box></geometry>
+          <material><ambient>0.3 0.3 0.8 1</ambient><diffuse>0.3 0.3 0.8 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ==================== PAREDES INTERIORES ==================== -->
+    <!-- Laberinto simplemente conexo — todas las paredes conectadas  -->
+    <!-- El robot entra por X=-9,Y=0 mirando al Este (+X)            -->
+    <!-- La salida está en X=+9, Y=0                                  -->
+
+    <!-- Fila 1 — Pared horizontal superior interior -->
+    <model name="iwall_h1">
+      <static>true</static>
+      <pose>-3 6 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>11.8 0.2 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>11.8 0.2 1.0</size></box></geometry>
+          <material><ambient>0.8 0.5 0.2 1</ambient><diffuse>0.8 0.5 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Bajada desde pared norte hasta h1 — lado derecho -->
+    <model name="iwall_v1">
+      <static>true</static>
+      <pose>3 7.5 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.2 3.0 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 3.0 1.0</size></box></geometry>
+          <material><ambient>0.8 0.5 0.2 1</ambient><diffuse>0.8 0.5 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Pared vertical izquierda interior — crea pasillo de entrada -->
+    <model name="iwall_v2">
+      <static>true</static>
+      <pose>-6 4.5 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.2 9.0 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 9.0 1.0</size></box></geometry>
+          <material><ambient>0.8 0.5 0.2 1</ambient><diffuse>0.8 0.5 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Pared horizontal media izquierda -->
+    <model name="iwall_h2">
+      <static>true</static>
+      <pose>-7.5 1.5 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>3.0 0.2 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>3.0 0.2 1.0</size></box></geometry>
+          <material><ambient>0.8 0.5 0.2 1</ambient><diffuse>0.8 0.5 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Pared vertical central izquierda -->
+    <model name="iwall_v3">
+      <static>true</static>
+      <pose>-4.5 3 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.2 6.0 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 6.0 1.0</size></box></geometry>
+          <material><ambient>0.8 0.5 0.2 1</ambient><diffuse>0.8 0.5 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Pared horizontal media centro -->
+    <model name="iwall_h3">
+      <static>true</static>
+      <pose>-1.5 3 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>6.0 0.2 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>6.0 0.2 1.0</size></box></geometry>
+          <material><ambient>0.8 0.5 0.2 1</ambient><diffuse>0.8 0.5 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Pared vertical centro -->
+    <model name="iwall_v4">
+      <static>true</static>
+      <pose>1.5 1.5 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.2 3.0 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 3.0 1.0</size></box></geometry>
+          <material><ambient>0.8 0.5 0.2 1</ambient><diffuse>0.8 0.5 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Pared horizontal inferior centro -->
+    <model name="iwall_h4">
+      <static>true</static>
+      <pose>3 0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>3.0 0.2 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>3.0 0.2 1.0</size></box></geometry>
+          <material><ambient>0.8 0.5 0.2 1</ambient><diffuse>0.8 0.5 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Pared vertical derecha interior -->
+    <model name="iwall_v5">
+      <static>true</static>
+      <pose>4.5 -3 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.2 6.0 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 6.0 1.0</size></box></geometry>
+          <material><ambient>0.8 0.5 0.2 1</ambient><diffuse>0.8 0.5 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Pared horizontal inferior derecha -->
+    <model name="iwall_h5">
+      <static>true</static>
+      <pose>1.5 -6 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>9.0 0.2 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>9.0 0.2 1.0</size></box></geometry>
+          <material><ambient>0.8 0.5 0.2 1</ambient><diffuse>0.8 0.5 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Pared vertical inferior izquierda -->
+    <model name="iwall_v6">
+      <static>true</static>
+      <pose>-3 -4.5 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.2 3.0 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 3.0 1.0</size></box></geometry>
+          <material><ambient>0.8 0.5 0.2 1</ambient><diffuse>0.8 0.5 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Pared horizontal inferior centro-izquierda -->
+    <model name="iwall_h6">
+      <static>true</static>
+      <pose>-5.25 -3 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>4.5 0.2 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>4.5 0.2 1.0</size></box></geometry>
+          <material><ambient>0.8 0.5 0.2 1</ambient><diffuse>0.8 0.5 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Pared vertical extremo inferior izquierdo -->
+    <model name="iwall_v7">
+      <static>true</static>
+      <pose>-7.5 -5.25 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.2 4.5 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 4.5 1.0</size></box></geometry>
+          <material><ambient>0.8 0.5 0.2 1</ambient><diffuse>0.8 0.5 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Pared horizontal zona inferior derecha -->
+    <model name="iwall_h7">
+      <static>true</static>
+      <pose>6 -3 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>6.0 0.2 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>6.0 0.2 1.0</size></box></geometry>
+          <material><ambient>0.8 0.5 0.2 1</ambient><diffuse>0.8 0.5 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Pared vertical zona derecha superior -->
+    <model name="iwall_v8">
+      <static>true</static>
+      <pose>6 4.5 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.2 3.0 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 3.0 1.0</size></box></geometry>
+          <material><ambient>0.8 0.5 0.2 1</ambient><diffuse>0.8 0.5 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Pared horizontal zona superior derecha -->
+    <model name="iwall_h8">
+      <static>true</static>
+      <pose>7.5 3 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>3.0 0.2 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>3.0 0.2 1.0</size></box></geometry>
+          <material><ambient>0.8 0.5 0.2 1</ambient><diffuse>0.8 0.5 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>

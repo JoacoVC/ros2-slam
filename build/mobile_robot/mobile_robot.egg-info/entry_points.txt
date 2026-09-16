@@ -1,0 +1,2 @@
+[console_scripts]
+lidar_min = mobile_robot.lidar_min:main

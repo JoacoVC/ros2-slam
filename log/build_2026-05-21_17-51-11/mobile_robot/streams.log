@@ -1,0 +1,46 @@
+[0.930s] Invoking command in '/home/joaco/ws_mobile/build/mobile_robot': PYTHONPATH=/home/joaco/ws_mobile/build/mobile_robot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/joaco/ws_mobile/install/mobile_robot/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/joaco/ws_mobile/build/mobile_robot/build --no-deps symlink_data
+[1.286s] running develop
+[1.489s] running egg_info
+[1.490s] creating mobile_robot.egg-info
+[1.509s] writing mobile_robot.egg-info/PKG-INFO
+[1.510s] writing dependency_links to mobile_robot.egg-info/dependency_links.txt
+[1.510s] writing entry points to mobile_robot.egg-info/entry_points.txt
+[1.510s] writing requirements to mobile_robot.egg-info/requires.txt
+[1.510s] writing top-level names to mobile_robot.egg-info/top_level.txt
+[1.510s] writing manifest file 'mobile_robot.egg-info/SOURCES.txt'
+[1.549s] reading manifest file 'mobile_robot.egg-info/SOURCES.txt'
+[1.550s] writing manifest file 'mobile_robot.egg-info/SOURCES.txt'
+[1.570s] running build_ext
+[1.571s] Creating /home/joaco/ws_mobile/install/mobile_robot/lib/python3.12/site-packages/mobile-robot.egg-link (link to .)
+[1.571s] Installing lidar_min script to /home/joaco/ws_mobile/install/mobile_robot/lib/mobile_robot
+[1.572s] 
+[1.572s] Installed /home/joaco/ws_mobile/build/mobile_robot
+[1.572s] running symlink_data
+[1.572s] creating /home/joaco/ws_mobile/install/mobile_robot/share/ament_index
+[1.572s] creating /home/joaco/ws_mobile/install/mobile_robot/share/ament_index/resource_index
+[1.573s] creating /home/joaco/ws_mobile/install/mobile_robot/share/ament_index/resource_index/packages
+[1.573s] symbolically linking /home/joaco/ws_mobile/build/mobile_robot/resource/mobile_robot -> /home/joaco/ws_mobile/install/mobile_robot/share/ament_index/resource_index/packages
+[1.574s] symbolically linking /home/joaco/ws_mobile/build/mobile_robot/package.xml -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot
+[1.574s] creating /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/launch
+[1.574s] symbolically linking /home/joaco/ws_mobile/build/mobile_robot/launch/localization.launch.py -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/launch
+[1.575s] symbolically linking /home/joaco/ws_mobile/build/mobile_robot/launch/slam.launch.py -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/launch
+[1.575s] symbolically linking /home/joaco/ws_mobile/build/mobile_robot/launch/gazebo_model.launch.py -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/launch
+[1.576s] symbolically linking /home/joaco/ws_mobile/build/mobile_robot/launch/gazebo_model.launch copy.py -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/launch
+[1.576s] creating /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/world
+[1.577s] symbolically linking /home/joaco/ws_mobile/build/mobile_robot/world/laberinto_prueba.sdf -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/world
+[1.577s] symbolically linking /home/joaco/ws_mobile/build/mobile_robot/world/maze.sdf -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/world
+[1.577s] creating /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/parameters
+[1.578s] symbolically linking /home/joaco/ws_mobile/build/mobile_robot/parameters/amcl_params.yaml -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/parameters
+[1.578s] symbolically linking /home/joaco/ws_mobile/build/mobile_robot/parameters/bridge_parameters.yaml -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/parameters
+[1.579s] symbolically linking /home/joaco/ws_mobile/build/mobile_robot/parameters/slam_params.yaml -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/parameters
+[1.579s] creating /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/model
+[1.579s] creating /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/model/maze_model_rs
+[1.580s] creating /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/model/maze_model_rs/media
+[1.580s] creating /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/model/maze_model_rs/thumbnails
+[1.581s] symbolically linking /home/joaco/ws_mobile/build/mobile_robot/model/robot.xacro -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/model
+[1.581s] symbolically linking /home/joaco/ws_mobile/build/mobile_robot/model/robot.gazebo -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/model
+[1.581s] creating /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/rviz
+[1.582s] creating /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/maps
+[1.582s] symbolically linking /home/joaco/ws_mobile/build/mobile_robot/maps/mi_mapa.yaml -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/maps
+[1.582s] symbolically linking /home/joaco/ws_mobile/build/mobile_robot/maps/mi_mapa.pgm -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/maps
+[1.612s] Invoked command in '/home/joaco/ws_mobile/build/mobile_robot' returned '0': PYTHONPATH=/home/joaco/ws_mobile/build/mobile_robot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/joaco/ws_mobile/install/mobile_robot/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/joaco/ws_mobile/build/mobile_robot/build --no-deps symlink_data

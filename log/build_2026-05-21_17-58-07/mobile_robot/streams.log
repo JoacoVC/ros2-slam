@@ -1,0 +1,49 @@
+[0.785s] Invoking command in '/home/joaco/ws_mobile/build/mobile_robot': PYTHONPATH=/home/joaco/ws_mobile/build/mobile_robot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/joaco/ws_mobile/install/mobile_robot/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/joaco/ws_mobile/build/mobile_robot/build
+[1.070s] running develop
+[1.270s] Removing /home/joaco/ws_mobile/install/mobile_robot/lib/python3.12/site-packages/mobile-robot.egg-link (link to .)
+[1.301s] Invoked command in '/home/joaco/ws_mobile/build/mobile_robot' returned '0': PYTHONPATH=/home/joaco/ws_mobile/build/mobile_robot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/joaco/ws_mobile/install/mobile_robot/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/joaco/ws_mobile/build/mobile_robot/build
+[1.303s] Invoking command in '/home/joaco/ws_mobile/src/mobile_robot': PYTHONPATH=/home/joaco/ws_mobile/build/mobile_robot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/joaco/ws_mobile/install/mobile_robot/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/mobile_robot build --build-base /home/joaco/ws_mobile/build/mobile_robot/build install --record /home/joaco/ws_mobile/build/mobile_robot/install.log --single-version-externally-managed install_data --force
+[1.555s] running egg_info
+[1.575s] writing ../../build/mobile_robot/mobile_robot.egg-info/PKG-INFO
+[1.575s] writing dependency_links to ../../build/mobile_robot/mobile_robot.egg-info/dependency_links.txt
+[1.575s] writing entry points to ../../build/mobile_robot/mobile_robot.egg-info/entry_points.txt
+[1.576s] writing requirements to ../../build/mobile_robot/mobile_robot.egg-info/requires.txt
+[1.576s] writing top-level names to ../../build/mobile_robot/mobile_robot.egg-info/top_level.txt
+[1.613s] reading manifest file '../../build/mobile_robot/mobile_robot.egg-info/SOURCES.txt'
+[1.614s] writing manifest file '../../build/mobile_robot/mobile_robot.egg-info/SOURCES.txt'
+[1.614s] running build
+[1.614s] running build_py
+[1.614s] creating /home/joaco/ws_mobile/build/mobile_robot/build
+[1.615s] creating /home/joaco/ws_mobile/build/mobile_robot/build/lib
+[1.615s] creating /home/joaco/ws_mobile/build/mobile_robot/build/lib/mobile_robot
+[1.616s] copying mobile_robot/lidar_min.py -> /home/joaco/ws_mobile/build/mobile_robot/build/lib/mobile_robot
+[1.616s] copying mobile_robot/__init__.py -> /home/joaco/ws_mobile/build/mobile_robot/build/lib/mobile_robot
+[1.616s] running install
+[1.621s] running install_lib
+[1.640s] creating /home/joaco/ws_mobile/install/mobile_robot/lib/python3.12/site-packages/mobile_robot
+[1.641s] copying /home/joaco/ws_mobile/build/mobile_robot/build/lib/mobile_robot/lidar_min.py -> /home/joaco/ws_mobile/install/mobile_robot/lib/python3.12/site-packages/mobile_robot
+[1.641s] copying /home/joaco/ws_mobile/build/mobile_robot/build/lib/mobile_robot/__init__.py -> /home/joaco/ws_mobile/install/mobile_robot/lib/python3.12/site-packages/mobile_robot
+[1.641s] byte-compiling /home/joaco/ws_mobile/install/mobile_robot/lib/python3.12/site-packages/mobile_robot/lidar_min.py to lidar_min.cpython-312.pyc
+[1.642s] byte-compiling /home/joaco/ws_mobile/install/mobile_robot/lib/python3.12/site-packages/mobile_robot/__init__.py to __init__.cpython-312.pyc
+[1.643s] running install_data
+[1.643s] copying resource/mobile_robot -> /home/joaco/ws_mobile/install/mobile_robot/share/ament_index/resource_index/packages
+[1.643s] copying package.xml -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot
+[1.643s] copying launch/localization.launch.py -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/launch
+[1.643s] copying launch/slam.launch.py -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/launch
+[1.644s] copying launch/gazebo_model.launch.py -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/launch
+[1.644s] copying launch/gazebo_model.launch copy.py -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/launch
+[1.644s] copying world/laberinto_prueba.sdf -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/world
+[1.644s] copying world/maze.sdf -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/world
+[1.644s] copying parameters/amcl_params.yaml -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/parameters
+[1.645s] copying parameters/bridge_parameters.yaml -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/parameters
+[1.645s] copying parameters/slam_params.yaml -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/parameters
+[1.645s] copying model/robot.xacro -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/model
+[1.645s] copying model/robot.gazebo -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/model
+[1.645s] copying maps/mi_mapa.yaml -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/maps
+[1.646s] copying maps/mi_mapa.pgm -> /home/joaco/ws_mobile/install/mobile_robot/share/mobile_robot/maps
+[1.646s] running install_egg_info
+[1.666s] Copying ../../build/mobile_robot/mobile_robot.egg-info to /home/joaco/ws_mobile/install/mobile_robot/lib/python3.12/site-packages/mobile_robot-0.0.0-py3.12.egg-info
+[1.668s] running install_scripts
+[1.809s] Installing lidar_min script to /home/joaco/ws_mobile/install/mobile_robot/lib/mobile_robot
+[1.810s] writing list of installed files to '/home/joaco/ws_mobile/build/mobile_robot/install.log'
+[1.866s] Invoked command in '/home/joaco/ws_mobile/src/mobile_robot' returned '0': PYTHONPATH=/home/joaco/ws_mobile/build/mobile_robot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/joaco/ws_mobile/install/mobile_robot/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/mobile_robot build --build-base /home/joaco/ws_mobile/build/mobile_robot/build install --record /home/joaco/ws_mobile/build/mobile_robot/install.log --single-version-externally-managed install_data --force
